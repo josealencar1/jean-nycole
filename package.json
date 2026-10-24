@@ -5,7 +5,7 @@
   "homepage": "https://josealencar1.github.io/jean-nycole",
   "scripts": {
     "dev": "next dev",
-    "build": "next build && xcopy /E /I /Y public out",
+    "build": "next build",
     "start": "next start",
     "lint": "next lint",
     "deploy": "npm run build && npx gh-pages -d out"
