@@ -7,16 +7,16 @@ import Image from 'next/image'
 
 gsap.registerPlugin(ScrollTrigger)
 
-// Jean's declaration — verbatim, original order, complete
+// Jean's declaration — verbatim, original order, complete (no emojis)
 const declaration = [
-  `❤️ 10 meses de nós, 10 meses da nossa história, do nosso amor! ❤️`,
+  `10 meses de nós, 10 meses da nossa história, do nosso amor!`,
   `Meu amor, hoje completamos 10 meses juntos, e meu coração só sabe agradecer a Deus por ter colocado você na minha vida. Sou muito grato por cada momento ao seu lado, por cada sorriso, cada abraço, cada beijo e até pelos desafios que enfrentamos, porque tudo isso faz parte da nossa história e nos ensina a crescer juntos.`,
   `Nycole, obrigado por ser minha namorada, minha companheira, minha paz e uma das partes mais bonitas da minha vida. Obrigado por compartilhar seus dias comigo, por me permitir fazer parte da sua história e por construir comigo algo que vai muito além de palavras. Você é uma pessoa muito especial para mim, e cada dia ao seu lado me faz perceber o quanto sou feliz por ter você.`,
   `Sei que nem todos os dias são fáceis, que temos nossas diferenças e momentos difíceis, mas quero que você saiba que o meu desejo é continuar aprendendo, amadurecendo e me tornando alguém cada vez melhor por mim, por você e pelo nosso futuro. Quero que o nosso amor continue crescendo, que nunca nos falte carinho, respeito, companheirismo e vontade de escolher um ao outro, mesmo nos dias complicados.`,
   `Quando penso no futuro, é você que quero ao meu lado. Quero viver muitas outras comemorações com você, realizar nossos sonhos, construir nossa família e olhar para trás daqui a muitos anos, lembrando de tudo o que passamos e sentindo orgulho da história que construímos juntos.`,
   `Obrigado por esses 10 meses de amor, companheirismo e felicidade. Que esses sejam apenas os primeiros de muitos meses e anos que ainda viveremos juntos. Eu te amo pela mulher que você é, pelo bem que você me faz e por tudo o que ainda quero viver ao seu lado.`,
-  `Feliz 10 meses para nós, meu amor! ❤️🥹💍`,
-  `Você é uma das minhas escolhas mais bonitas, e eu espero continuar escolhendo você todos os dias. Eu te amo, minha Nycole! ❤️`,
+  `Feliz 10 meses para nós, meu amor!`,
+  `Você é uma das minhas escolhas mais bonitas, e eu espero continuar escolhendo você todos os dias. Eu te amo, minha Nycole!`,
 ]
 
 const galleryPhotos = [
@@ -32,10 +32,9 @@ export default function Home() {
 
   useEffect(() => {
     ctxRef.current = gsap.context(() => {
-      // Kill any existing triggers first
       ScrollTrigger.getAll().forEach((t) => t.kill())
 
-      // ==================== ACT I — HERO PARALLAX ====================
+      // Hero parallax
       const heroBg = document.querySelector('.hero-bg')
       const heroContent = document.querySelector('.hero-content')
 
@@ -44,7 +43,7 @@ export default function Home() {
           yPercent: 20,
           ease: 'none',
           scrollTrigger: {
-            trigger: '.act-i',
+            trigger: '.hero',
             start: 'top top',
             end: 'bottom top',
             scrub: 0.6,
@@ -56,7 +55,7 @@ export default function Home() {
           y: -40,
           ease: 'none',
           scrollTrigger: {
-            trigger: '.act-i',
+            trigger: '.hero',
             start: 'center top',
             end: 'bottom top',
             scrub: 0.6,
@@ -64,7 +63,7 @@ export default function Home() {
         })
       }
 
-      // ==================== UNIVERSAL: EVERY .anim-element ====================
+      // Universal anim-elements
       const elements = document.querySelectorAll('.anim-element')
 
       elements.forEach((el) => {
@@ -147,7 +146,7 @@ export default function Home() {
         }
       })
 
-      // ==================== PHOTO PARALLAX — on container (frame + image together) ====================
+      // Photo parallax on container (frame + image together)
       const photoContainers = document.querySelectorAll('.anim-photo')
       photoContainers.forEach((container) => {
         gsap.to(container, {
@@ -173,8 +172,8 @@ export default function Home() {
 
   return (
     <main className="relative overflow-x-hidden bg-stone-950">
-      {/* ==================== ACT I — ABERTURA ==================== */}
-      <section className="act-i relative min-h-screen flex items-center justify-center px-4 md:px-6 lg:px-10 xl:px-16">
+      {/* HERO / ABERTURA */}
+      <section className="hero relative min-h-screen flex items-center justify-center px-4 md:px-6 lg:px-10 xl:px-16">
         <div className="hero-bg absolute inset-0 -z-10">
           <Image
             src="/img/jean8.jpeg"
@@ -199,7 +198,6 @@ export default function Home() {
           </time>
         </div>
 
-        {/* First photo - framed, anchored at bottom */}
         <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full max-w-5xl h-64 md:h-80 lg:h-[38vh] pointer-events-none -z-10 px-4">
           <div className="anim-element anim-photo photo-frame aspect-[16/9] md:aspect-[21/9] h-full w-full">
             <Image
@@ -214,8 +212,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ==================== ACT II — O INÍCIO ==================== */}
-      <section className="act-ii relative min-h-screen flex items-center px-4 md:px-6 lg:px-10 xl:px-16 py-12 md:py-16" aria-labelledby="inicio-heading">
+      {/* INÍCIO */}
+      <section className="inicio relative min-h-screen flex items-center px-4 md:px-6 lg:px-10 xl:px-16 py-12 md:py-16" aria-labelledby="inicio-heading">
         <div className="w-full max-w-7xl mx-auto">
           <div className="space-y-6 md:space-y-8 lg:space-y-10">
             <div className="anim-element anim-text">
@@ -251,8 +249,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ==================== ACT III — RETRATO NYCOLE ==================== */}
-      <section className="act-iii relative min-h-screen flex items-center px-4 md:px-6 lg:px-10 xl:px-16 py-12 md:py-16 bg-stone-900/40" aria-labelledby="nycole-heading">
+      {/* RETRATO NYCOLE */}
+      <section className="retrato relative min-h-screen flex items-center px-4 md:px-6 lg:px-10 xl:px-16 py-12 md:py-16 bg-stone-900/40" aria-labelledby="retrato-heading">
         <div className="w-full max-w-7xl mx-auto">
           <div className="space-y-6 md:space-y-8 lg:space-y-10">
             <div className="anim-element anim-photo">
@@ -270,7 +268,7 @@ export default function Home() {
 
             <div className="space-y-6 md:space-y-8">
               <div className="anim-element anim-text">
-                <h2 id="nycole-heading" className="font-display text-3xl md:text-4xl lg:text-5xl font-light tracking-tight text-stone-50">
+                <h2 id="retrato-heading" className="font-display text-3xl md:text-4xl lg:text-5xl font-light tracking-tight text-stone-50">
                   Para a
                   <br />
                   <span className="font-script text-2xl md:text-3xl lg:text-4xl font-normal block mt-2 text-rose-400/90">
@@ -293,8 +291,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ==================== ACT IV — GALERIA ==================== */}
-      <section className="act-iv relative min-h-screen flex items-center px-4 md:px-6 lg:px-10 xl:px-16 py-12 md:py-16" aria-labelledby="memorias-heading">
+      {/* MEMÓRIAS (GALERIA) */}
+      <section className="memorias relative min-h-screen flex items-center px-4 md:px-6 lg:px-10 xl:px-16 py-12 md:py-16" aria-labelledby="memorias-heading">
         <div className="w-full max-w-7xl mx-auto">
           <div className="anim-element anim-text text-center mb-8 md:mb-12 lg:mb-16">
             <h2 id="memorias-heading" className="font-display text-3xl md:text-4xl lg:text-5xl font-light tracking-tight text-stone-50">
@@ -306,9 +304,8 @@ export default function Home() {
             </h2>
           </div>
 
-          {/* Mobile-first: single column, large photos. Tablet: 2 cols. Desktop: 3 cols */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5 lg:gap-6">
-            {galleryPhotos.map((photo) => (
+            {galleryPhotos.map((photo, i) => (
               <div key={photo.src} className="anim-element anim-gallery">
                 <div className="photo-frame aspect-[3/4]">
                   <Image
@@ -317,6 +314,7 @@ export default function Home() {
                     fill
                     className="object-cover"
                     sizes="(max-width: 639px) 100vw, (max-width: 1023px) 50vw, 33vw"
+                    loading={i === 0 ? 'eager' : 'lazy'}
                   />
                 </div>
               </div>
@@ -325,29 +323,37 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ==================== ACT V — A CARTA ==================== */}
-      <section className="act-v relative min-h-screen flex items-center px-4 md:px-6 lg:px-10 xl:px-16 py-12 md:py-16 bg-stone-900/40" aria-labelledby="carta-heading">
+      {/* CARTA */}
+      <section className="carta relative min-h-screen flex items-center px-4 md:px-6 lg:px-10 xl:px-16 py-12 md:py-16 bg-stone-900/40" aria-labelledby="carta-heading">
         <div className="w-full max-w-3xl mx-auto">
           <div className="anim-element anim-text text-center mb-8 md:mb-10 lg:mb-12">
             <h2 id="carta-heading" className="font-display text-3xl md:text-4xl lg:text-5xl font-light tracking-tight text-stone-50">
-              A carta
+              Carta
             </h2>
           </div>
 
-          <div className="anim-element anim-letter relative bg-stone-900/80 backdrop-blur-sm rounded-2xl p-5 md:p-8 lg:p-10 xl:p-12 border border-stone-800/60 space-y-5 md:space-y-6">
-            {declaration.slice(3).map((paragraph, i) => (
-              <div key={i} className="anim-letter">
-                <p className={`leading-relaxed text-balance ${i === 4 ? 'font-script text-xl md:text-2xl lg:text-3xl text-rose-400 text-center my-3' : ''} ${i === 7 ? 'font-script text-base md:text-lg lg:text-xl text-rose-400/90 text-right pt-3 border-t border-stone-800/50' : 'font-body text-sm md:text-base lg:text-lg text-stone-200'}`}>
-                  {paragraph}
+          <div className="anim-element anim-letter relative bg-stone-900/80 backdrop-blur-sm rounded-2xl p-5 md:p-8 lg:p-10 xl:p-12 border border-stone-800/60 space-y-6">
+            {/* Carta como texto contínuo (embed) */}
+            <div className="prose-lg text-stone-200 leading-relaxed text-balance">
+              {declaration.map((p, i) => (
+                <p key={i} className="mb-6 last:mb-0">
+                  {p}
                 </p>
+              ))}
+            </div>
+
+            <div className="mt-10 flex items-end justify-end gap-2 pt-4 border-t border-stone-800/50">
+              <div className="text-right">
+                <p className="font-script text-lg md:text-xl text-rose-400/90">com todo meu amor,</p>
+                <p className="font-script text-xl md:text-2xl text-stone-50">Jean</p>
               </div>
-            ))}
+            </div>
           </div>
         </div>
       </section>
 
-      {/* ==================== ACT VI — O FUTURO ==================== */}
-      <section className="act-vi relative min-h-screen flex items-center px-4 md:px-6 lg:px-10 xl:px-16 py-12 md:py-16" aria-labelledby="futuro-heading">
+      {/* FUTURO */}
+      <section className="futuro relative min-h-screen flex items-center px-4 md:px-6 lg:px-10 xl:px-16 py-12 md:py-16" aria-labelledby="futuro-heading">
         <div className="w-full max-w-7xl mx-auto">
           <div className="space-y-6 md:space-y-8 lg:space-y-10">
             <div className="anim-element anim-photo">
@@ -377,12 +383,13 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ==================== ACT VII — VÍDEO DOS NOSSOS MOMENTOS ==================== */}
-      <section className="act-vii relative min-h-screen flex items-center px-4 md:px-6 lg:px-10 xl:px-16 py-12 md:py-16 bg-stone-900/40" aria-labelledby="video-heading">
+      {/* VÍDEO */}
+      <section className="video relative min-h-screen flex items-center px-4 md:px-6 lg:px-10 xl:px-16 py-12 md:py-16 bg-stone-900/40" aria-labelledby="video-heading">
         <div className="w-full max-w-4xl mx-auto text-center">
           <div className="anim-element anim-text mb-8 md:mb-10">
             <h2 id="video-heading" className="font-display text-3xl md:text-4xl lg:text-5xl font-light tracking-tight text-stone-50 mb-4">
-              Vídeo dos<br />
+              Vídeo dos
+              <br />
               <span className="font-script text-2xl md:text-3xl lg:text-4xl font-normal block mt-2 text-rose-400/90">
                 nossos momentos
               </span>
@@ -407,8 +414,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ==================== ACT VIII — ENCERRAMENTO ==================== */}
-      <section className="act-viii relative min-h-screen flex items-center px-4 md:px-6 lg:px-10 xl:px-16 py-12 md:py-16" aria-labelledby="fim-heading">
+      {/* ENCERRAMENTO */}
+      <section className="encerramento relative min-h-screen flex items-center px-4 md:px-6 lg:px-10 xl:px-16 py-12 md:py-16" aria-labelledby="fim-heading">
         <div className="absolute inset-0 -z-10 bg-gradient-to-b from-stone-950 via-rose-950/10 to-stone-950" aria-hidden="true" />
 
         <div className="relative z-10 w-full max-w-3xl mx-auto text-center">
@@ -440,16 +447,22 @@ export default function Home() {
           <div className="anim-element anim-text flex items-center justify-center gap-3 md:gap-4 mb-8 md:mb-10" aria-hidden="true">
             <div className="flex-1 h-px bg-gradient-to-r from-transparent via-rose-500/30 to-transparent" />
             <div className="flex items-center gap-1.5">
-              <span className="font-script text-xl text-rose-500/60">♡</span>
-              <span className="font-script text-2xl text-rose-500">♡</span>
-              <span className="font-script text-xl text-rose-500/60">♡</span>
+              <span className="font-script text-xl text-rose-500/60">·</span>
+              <span className="font-script text-2xl text-rose-500">·</span>
+              <span className="font-script text-xl text-rose-500/60">·</span>
             </div>
             <div className="flex-1 h-px bg-gradient-to-r from-rose-500/30 via-transparent to-transparent" />
           </div>
 
-          <p className="anim-element anim-text font-script text-xl md:text-2xl lg:text-3xl text-stone-50/90">
-            Eu te amo, minha Nycole! ♡
-          </p>
+          <div className="anim-element anim-text mt-10 md:mt-12 text-stone-50/90 font-script text-xl md:text-2xl lg:text-3xl text-balance">
+            Obrigado por estes 10 meses de amor, companheirismo e felicidade.<br />
+            Que esses sejam apenas os primeiros de muitos meses e anos<br />
+            que ainda viveremos juntos.<br /><br />
+            Eu te amo pela mulher que você é, pelo bem que você me faz<br />
+            e por tudo o que ainda quero viver ao seu lado.<br /><br />
+            Você é uma das minhas escolhas mais bonitas.<br />
+            Eu te amo, minha Nycole.
+          </div>
 
           <div className="anim-element anim-text mt-10 md:mt-12">
             <a
