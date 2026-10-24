@@ -2,7 +2,7 @@
   "name": "nycole-10-meses",
   "version": "1.0.0",
   "private": true,
-  "homepage": "https://kyxl.github.io/SITE-PRO-JEANNNN",
+  "homepage": "https://josealencar1.github.io/jean-nycole",
   "scripts": {
     "dev": "next dev",
     "build": "next build && xcopy /E /I /Y public out",
