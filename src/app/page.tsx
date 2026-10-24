@@ -1,20 +1,22 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import Image from 'next/image'
 
 gsap.registerPlugin(ScrollTrigger)
 
+// Jean's declaration — verbatim, original order, complete
 const declaration = [
+  `❤️ 10 meses de nós, 10 meses da nossa história, do nosso amor! ❤️`,
   `Meu amor, hoje completamos 10 meses juntos, e meu coração só sabe agradecer a Deus por ter colocado você na minha vida. Sou muito grato por cada momento ao seu lado, por cada sorriso, cada abraço, cada beijo e até pelos desafios que enfrentamos, porque tudo isso faz parte da nossa história e nos ensina a crescer juntos.`,
   `Nycole, obrigado por ser minha namorada, minha companheira, minha paz e uma das partes mais bonitas da minha vida. Obrigado por compartilhar seus dias comigo, por me permitir fazer parte da sua história e por construir comigo algo que vai muito além de palavras. Você é uma pessoa muito especial para mim, e cada dia ao seu lado me faz perceber o quanto sou feliz por ter você.`,
   `Sei que nem todos os dias são fáceis, que temos nossas diferenças e momentos difíceis, mas quero que você saiba que o meu desejo é continuar aprendendo, amadurecendo e me tornando alguém cada vez melhor por mim, por você e pelo nosso futuro. Quero que o nosso amor continue crescendo, que nunca nos falte carinho, respeito, companheirismo e vontade de escolher um ao outro, mesmo nos dias complicados.`,
   `Quando penso no futuro, é você que quero ao meu lado. Quero viver muitas outras comemorações com você, realizar nossos sonhos, construir nossa família e olhar para trás daqui a muitos anos, lembrando de tudo o que passamos e sentindo orgulho da história que construímos juntos.`,
   `Obrigado por esses 10 meses de amor, companheirismo e felicidade. Que esses sejam apenas os primeiros de muitos meses e anos que ainda viveremos juntos. Eu te amo pela mulher que você é, pelo bem que você me faz e por tudo o que ainda quero viver ao seu lado.`,
-  `Feliz 10 meses para nós, meu amor!`,
-  `Você é uma das minhas escolhas mais bonitas, e eu espero continuar escolhendo você todos os dias. Eu te amo, minha Nycole!`,
+  `Feliz 10 meses para nós, meu amor! ❤️🥹💍`,
+  `Você é uma das minhas escolhas mais bonitas, e eu espero continuar escolhendo você todos os dias. Eu te amo, minha Nycole! ❤️`,
 ]
 
 const galleryPhotos = [
@@ -26,19 +28,12 @@ const galleryPhotos = [
 ]
 
 export default function Home() {
-  const [mounted, setMounted] = useState(false)
   const ctxRef = useRef<gsap.Context | null>(null)
 
   useEffect(() => {
-    setMounted(true)
-  }, [])
-
-  useEffect(() => {
-    if (!mounted) return
-
     ctxRef.current = gsap.context(() => {
-      // Kill any existing triggers
-      ScrollTrigger.getAll().forEach(t => t.kill())
+      // Kill any existing triggers first
+      ScrollTrigger.getAll().forEach((t) => t.kill())
 
       // ==================== ACT I — HERO PARALLAX ====================
       const heroBg = document.querySelector('.hero-bg')
@@ -53,7 +48,7 @@ export default function Home() {
             start: 'top top',
             end: 'bottom top',
             scrub: 0.6,
-          }
+          },
         })
 
         gsap.to(heroContent, {
@@ -65,23 +60,22 @@ export default function Home() {
             start: 'center top',
             end: 'bottom top',
             scrub: 0.6,
-          }
+          },
         })
       }
 
       // ==================== UNIVERSAL: EVERY .anim-element ====================
-      // Photos, text blocks, everything with this class
       const elements = document.querySelectorAll('.anim-element')
-      
+
       elements.forEach((el) => {
         const isPhoto = el.classList.contains('anim-photo')
         const isText = el.classList.contains('anim-text')
         const isGallery = el.classList.contains('anim-gallery')
         const isLetter = el.classList.contains('anim-letter')
 
-        // Different animations for different types
         if (isPhoto) {
-          gsap.fromTo(el,
+          gsap.fromTo(
+            el,
             { y: 80, opacity: 0, scale: 0.9 },
             {
               y: 0,
@@ -95,11 +89,12 @@ export default function Home() {
                 end: 'bottom 20%',
                 toggleActions: 'play reverse play reverse',
                 markers: false,
-              }
+              },
             }
           )
         } else if (isText) {
-          gsap.fromTo(el,
+          gsap.fromTo(
+            el,
             { y: 40, opacity: 0 },
             {
               y: 0,
@@ -111,11 +106,12 @@ export default function Home() {
                 start: 'top 88%',
                 end: 'bottom 25%',
                 toggleActions: 'play reverse play reverse',
-              }
+              },
             }
           )
         } else if (isGallery) {
-          gsap.fromTo(el,
+          gsap.fromTo(
+            el,
             { y: 100, opacity: 0, scale: 0.85 },
             {
               y: 0,
@@ -128,11 +124,12 @@ export default function Home() {
                 start: 'top 95%',
                 end: 'bottom 15%',
                 toggleActions: 'play reverse play reverse',
-              }
+              },
             }
           )
         } else if (isLetter) {
-          gsap.fromTo(el,
+          gsap.fromTo(
+            el,
             { y: 30, opacity: 0 },
             {
               y: 0,
@@ -144,7 +141,7 @@ export default function Home() {
                 start: 'top 92%',
                 end: 'bottom 30%',
                 toggleActions: 'play reverse play reverse',
-              }
+              },
             }
           )
         }
@@ -161,7 +158,7 @@ export default function Home() {
             start: 'top bottom',
             end: 'bottom top',
             scrub: 1,
-          }
+          },
         })
       })
 
@@ -170,22 +167,9 @@ export default function Home() {
 
     return () => {
       ctxRef.current?.revert()
-      ScrollTrigger.getAll().forEach(t => t.kill())
+      ScrollTrigger.getAll().forEach((t) => t.kill())
     }
-  }, [mounted])
-
-  if (!mounted) {
-    return (
-      <main className="relative overflow-x-hidden bg-stone-950 min-h-screen">
-        <div className="min-h-screen flex items-center justify-center">
-          <div className="text-center">
-            <p className="font-script text-3xl md:text-4xl text-rose-400/90 mb-4">10 meses de nós</p>
-            <h1 className="font-display text-5xl md:text-7xl font-light text-stone-50">Nossa história</h1>
-          </div>
-        </div>
-      </main>
-    )
-  }
+  }, [])
 
   return (
     <main className="relative overflow-x-hidden bg-stone-950">
@@ -210,9 +194,6 @@ export default function Home() {
           <h1 className="font-display text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-light tracking-tight text-stone-50 leading-[1.02] text-balance mb-5 md:mb-6">
             Nossa história
           </h1>
-          <p className="font-body text-base md:text-lg lg:text-xl xl:text-2xl font-light text-stone-300 max-w-2xl mx-auto leading-relaxed text-balance">
-            Escrita a dois, com amor, paciência e escolhas diárias.
-          </p>
           <time className="font-body text-xs md:text-sm tracking-widest uppercase text-stone-400 mt-6 md:mt-8 block" dateTime="2026-01-22">
             22/01/2026
           </time>
@@ -241,10 +222,12 @@ export default function Home() {
               <h2 id="inicio-heading" className="font-display text-3xl md:text-4xl lg:text-5xl font-light tracking-tight text-stone-50">
                 O início
                 <br />
-                <span className="font-script text-2xl md:text-3xl lg:text-4xl font-normal block mt-2 text-rose-400/90">da nossa história</span>
+                <span className="font-script text-2xl md:text-3xl lg:text-4xl font-normal block mt-2 text-rose-400/90">
+                  da nossa história
+                </span>
               </h2>
             </div>
-            
+
             <div className="anim-element anim-photo">
               <div className="photo-frame aspect-[4/5] md:aspect-[3/4] lg:aspect-[4/5]">
                 <Image
@@ -258,14 +241,11 @@ export default function Home() {
             </div>
 
             <div className="space-y-5 md:space-y-6">
-              {declaration.slice(0, 2).map((paragraph, i) => (
+              {declaration.slice(1, 3).map((paragraph, i) => (
                 <p key={i} className="anim-element anim-text font-body text-base md:text-lg leading-relaxed text-stone-300 text-balance">
                   {paragraph}
                 </p>
               ))}
-              <blockquote className="anim-element anim-text border-l-4 border-rose-500/50 pl-5 md:pl-6 italic font-body text-base md:text-lg leading-relaxed text-stone-300">
-                "Você é uma pessoa muito especial para mim, e cada dia ao seu lado me faz perceber o quanto sou feliz por ter você."
-              </blockquote>
             </div>
           </div>
         </div>
@@ -293,7 +273,9 @@ export default function Home() {
                 <h2 id="nycole-heading" className="font-display text-3xl md:text-4xl lg:text-5xl font-light tracking-tight text-stone-50">
                   Para a
                   <br />
-                  <span className="font-script text-2xl md:text-3xl lg:text-4xl font-normal block mt-2 text-rose-400/90">Nycole</span>
+                  <span className="font-script text-2xl md:text-3xl lg:text-4xl font-normal block mt-2 text-rose-400/90">
+                    Nycole
+                  </span>
                 </h2>
               </div>
 
@@ -304,16 +286,8 @@ export default function Home() {
               </blockquote>
 
               <p className="anim-element anim-text font-body text-base md:text-lg leading-relaxed text-stone-300 text-balance">
-                Este espaço é só seu. Um retrato que guarda a luz dos seus olhos, a delicadeza do seu sorriso e todo o carinho que cabe no meu peito. Obrigado por ser a mulher incrível que você é — minha namorada, minha companheira, minha paz.
+                {declaration[2]}
               </p>
-
-              <div className="anim-element anim-text flex items-end justify-between gap-4 pt-6 border-t border-stone-800">
-                <div className="flex-1" />
-                <div className="text-right">
-                  <p className="font-script text-lg md:text-xl text-rose-400/90">com amor,</p>
-                  <p className="font-script text-xl md:text-2xl text-stone-50">Jean</p>
-                </div>
-              </div>
             </div>
           </div>
         </div>
@@ -326,7 +300,9 @@ export default function Home() {
             <h2 id="memorias-heading" className="font-display text-3xl md:text-4xl lg:text-5xl font-light tracking-tight text-stone-50">
               Memórias
               <br />
-              <span className="font-script text-2xl md:text-3xl lg:text-4xl font-normal block mt-2 text-rose-400/90">guardadas</span>
+              <span className="font-script text-2xl md:text-3xl lg:text-4xl font-normal block mt-2 text-rose-400/90">
+                guardadas
+              </span>
             </h2>
           </div>
 
@@ -359,21 +335,13 @@ export default function Home() {
           </div>
 
           <div className="anim-element anim-letter relative bg-stone-900/80 backdrop-blur-sm rounded-2xl p-5 md:p-8 lg:p-10 xl:p-12 border border-stone-800/60 space-y-5 md:space-y-6">
-            {declaration.map((paragraph, i) => (
+            {declaration.slice(3).map((paragraph, i) => (
               <div key={i} className="anim-letter">
-                <p className={`leading-relaxed text-balance ${i === 5 ? 'font-script text-xl md:text-2xl lg:text-3xl text-rose-400 text-center my-3' : ''} ${i === 6 ? 'font-script text-base md:text-lg lg:text-xl text-rose-400/90 text-right pt-3 border-t border-stone-800/50' : 'font-body text-sm md:text-base lg:text-lg text-stone-200'}`}>
+                <p className={`leading-relaxed text-balance ${i === 4 ? 'font-script text-xl md:text-2xl lg:text-3xl text-rose-400 text-center my-3' : ''} ${i === 7 ? 'font-script text-base md:text-lg lg:text-xl text-rose-400/90 text-right pt-3 border-t border-stone-800/50' : 'font-body text-sm md:text-base lg:text-lg text-stone-200'}`}>
                   {paragraph}
                 </p>
               </div>
             ))}
-
-            <div className="flex items-end justify-between gap-4 pt-3">
-              <div className="flex-1 h-px bg-gradient-to-r from-transparent via-stone-700 to-transparent" />
-              <div className="text-right">
-                <p className="font-script text-lg md:text-xl text-rose-400/90">com todo meu amor,</p>
-                <p className="font-script text-xl md:text-2xl text-stone-50">Jean</p>
-              </div>
-            </div>
           </div>
         </div>
       </section>
@@ -399,19 +367,11 @@ export default function Home() {
                 <h2 id="futuro-heading" className="font-display text-3xl md:text-4xl lg:text-5xl font-light tracking-tight text-stone-50">
                   O futuro
                   <br />
-                  <span className="font-script text-2xl md:text-3xl lg:text-4xl font-normal block mt-2 text-rose-400/90">que sonhamos</span>
+                  <span className="font-script text-2xl md:text-3xl lg:text-4xl font-normal block mt-2 text-rose-400/90">
+                    que sonhamos
+                  </span>
                 </h2>
               </div>
-
-              <div className="space-y-5 md:space-y-6">
-                {declaration.slice(2, 6).map((paragraph, i) => (
-                  <p key={i} className="anim-element anim-text font-body text-base md:text-lg leading-relaxed text-stone-300 text-balance">
-                    {paragraph}
-                  </p>
-                ))}
-              </div>
-
-              
             </div>
           </div>
         </div>
@@ -423,7 +383,9 @@ export default function Home() {
           <div className="anim-element anim-text mb-8 md:mb-10">
             <h2 id="video-heading" className="font-display text-3xl md:text-4xl lg:text-5xl font-light tracking-tight text-stone-50 mb-4">
               Vídeo dos<br />
-              <span className="font-script text-2xl md:text-3xl lg:text-4xl font-normal block mt-2 text-rose-400/90">nossos momentos</span>
+              <span className="font-script text-2xl md:text-3xl lg:text-4xl font-normal block mt-2 text-rose-400/90">
+                nossos momentos
+              </span>
             </h2>
           </div>
 
@@ -442,10 +404,6 @@ export default function Home() {
               <div className="absolute inset-0 bg-gradient-to-t from-stone-950/60 via-transparent to-transparent pointer-events-none" />
             </div>
           </div>
-
-          <p className="anim-element anim-text font-script text-lg md:text-xl lg:text-2xl text-rose-400/80 mt-8 md:mt-10">
-            "Feliz 10 meses para nós, meu amor!"
-          </p>
         </div>
       </section>
 
@@ -468,13 +426,15 @@ export default function Home() {
 
           <div className="anim-element anim-text mb-5 md:mb-6">
             <h2 id="fim-heading" className="font-display text-3xl md:text-4xl lg:text-5xl font-light tracking-tight text-stone-50 mb-4">
-              <span className="font-script text-2xl md:text-3xl lg:text-4xl block text-rose-400/90 mb-2">Para sempre</span>
+              <span className="font-script text-2xl md:text-3xl lg:text-4xl block text-rose-400/90 mb-2">
+                Para sempre
+              </span>
               nós
             </h2>
           </div>
 
           <p className="anim-element anim-text font-body text-base md:text-lg leading-relaxed text-stone-300 max-w-2xl mx-auto mb-8 md:mb-10 text-balance">
-            Você é uma das minhas escolhas mais bonitas, e eu espero continuar escolhendo você todos os dias. Eu te amo, minha Nycole!
+            {declaration[7]}
           </p>
 
           <div className="anim-element anim-text flex items-center justify-center gap-3 md:gap-4 mb-8 md:mb-10" aria-hidden="true">
