@@ -1,0 +1,39 @@
+# Jean & Nycole — site corrigido
+
+## Como publicar no GitHub Pages
+
+1. Abra o repositório `josealencar1/jean-nycole` na branch publicada pelo GitHub Pages.
+2. Substitua o `index.html` da raiz por este arquivo.
+3. Envie a pasta `img/` inteira (com `jean1.jpeg` até `jean8.jpeg`), sobrescrevendo os arquivos homônimos existentes.
+4. Mantenha o `img/video.mp4` que já está no seu repositório se quiser que a seção de vídeo apareça. O vídeo **não foi incluído no ZIP**, pois não estava anexado ao HTML nem entre os arquivos de imagem disponíveis nesta conversa.
+5. Aguarde o GitHub Pages atualizar e recarregue a página. Se visualizar uma versão antiga, faça recarga forçada (Ctrl+F5).
+
+## O que foi corrigido
+
+- Fotos agora são arquivos normais na pasta `img/`, com caminhos relativos; nenhum Base64 gigante nem links `blob` do GitHub.
+- A terceira foto da galeria (`jean5.jpeg`) foi recuperada dos originais.
+- As fotos `jean1.jpeg`, `jean5.jpeg`, `jean6.jpeg` e `jean7.jpeg` tiveram a orientação física corrigida, sem cortes destrutivos.
+- Molduras responsivas com enquadramentos para retratos e paisagens; todas as oito fotos estão no site.
+- Removidos títulos 'Ato', emojis, a frase inicial removida da carta, 'Minha declaração' e o texto 'Vídeo real do nosso dia a dia'.
+- Texto completo da carta original mantido num bloco estilo embed, com correção da codificação quebrada em 'você'.
+- Encerramento redesenhado, mantendo o sentido romântico, a data e o nome Nycole.
+- O vídeo só aparece se o arquivo `img/video.mp4` estiver presente e for reproduzível.
+
+## Estrutura
+
+```
+index.html
+img/
+  jean1.jpeg
+  jean2.jpeg
+  jean3.jpeg
+  jean4.jpeg
+  jean5.jpeg
+  jean6.jpeg
+  jean7.jpeg
+  jean8.jpeg
+```
+
+Não é necessário instalar Node.js, React ou TypeScript. O site é estático e funciona diretamente no GitHub Pages.
+
+CAPA DO VÍDEO: Agora o player não usa nenhuma foto estática como poster. A prévia vem do próprio arquivo img/video.mp4 quando o navegador carrega os dados (em alguns navegadores móveis, a imagem pode aparecer só após tocar Play).
